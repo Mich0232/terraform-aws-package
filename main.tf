@@ -1,6 +1,6 @@
 locals {
   zip_filename     = var.package_type == "zip" ? "${random_uuid.code_hash.result}.zip" : "${random_uuid.code_hash.result}"
-  hash_files_paths = setunion([for path in var.hash_sources : fileset(var.source_dir, path)])
+  hash_files_paths = flatten(setunion([for path in var.hash_sources : fileset(var.source_dir, path)]))
 }
 
 resource "random_uuid" "code_hash" {
