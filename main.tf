@@ -1,7 +1,6 @@
 locals {
   zip_filename     = var.package_type == "zip" ? "${random_uuid.code_hash.result}.zip" : "${random_uuid.code_hash.result}"
   hash_files_paths = flatten(setunion([for path in var.hash_sources : fileset(var.source_dir, path)]))
-  source_code_hash = base64encode(filemd5(var.output_dir))
   etag             = filemd5(var.output_dir)
 }
 
@@ -23,7 +22,7 @@ resource "aws_s3_object" "lambda_code_object" {
   key         = var.deployment_bucket_prefix != "" ? "${var.deployment_bucket_prefix}/${local.zip_filename}" : local.zip_filename
   source      = var.output_dir
   etag        = local.etag
-  source_hash = local.source_code_hash
+  source_hash = data.archive_file.code.output_base64sha256
 
   depends_on = [data.archive_file.code]
 }

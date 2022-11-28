@@ -2,8 +2,8 @@ output "key" {
   value = aws_s3_object.lambda_code_object.key
 }
 
-output "b64_hash" {
-  value = local.source_code_hash
+output "output_base64sha256" {
+  value = data.archive_file.code.output_base64sha256
 }
 
 output "etag" {
