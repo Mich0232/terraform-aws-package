@@ -34,8 +34,6 @@ Keep in mind that you need to have permissions to create a zip package in provid
 
 `output_base64sha256` - zip archive hash. Can be used to detect changes in a source directory.
 
-`etag` - md5 of zip archive.
-
 `zip_id` - name of zip file. (Calculated hash of sources)
 
 
