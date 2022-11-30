@@ -41,7 +41,7 @@ Keep in mind that you need to have permissions to create a zip package in provid
 
 ```terraform
 module "ms-package" {
-  source = "git@github.com:Mich0232/aws-package.git"
+  source = "https://github.com/Mich0232/aws-package.git"
 
   deployment_bucket_id     = aws_s3_bucket.deployment_bucket.id
   deployment_bucket_prefix = "myApp"
