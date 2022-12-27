@@ -1,7 +1,9 @@
 locals {
-  zip_filename     = var.package_type == "zip" ? "${random_uuid.code_hash.result}.zip" : "${random_uuid.code_hash.result}"
-  hash_files_paths = distinct(flatten([for path in var.hash_sources : fileset(var.source_dir, path)]))
-  output_file_path = "${var.output_dir}/${local.zip_filename}"
+  zip_filename              = var.package_type == "zip" ? "${random_uuid.code_hash.result}.zip" : "${random_uuid.code_hash.result}"
+  excluded_hash_files_paths = distinct(flatten([for path in var.excluded_paths : fileset(var.source_dir, path)]))
+  all_hash_files_paths      = distinct(flatten([for path in var.hash_sources : fileset(var.source_dir, path)]))
+  hash_files_paths          = flatten(setsubtract(toset(local.all_hash_files_paths), toset(local.excluded_hash_files_paths)))
+  output_file_path          = "${var.output_dir}/${local.zip_filename}"
 }
 
 resource "random_uuid" "code_hash" {
