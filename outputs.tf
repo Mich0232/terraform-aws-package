@@ -1,4 +1,4 @@
-output "key" {
+output "s3_key" {
   value = aws_s3_object.lambda_code_object.key
 }
 
