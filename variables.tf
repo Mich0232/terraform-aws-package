@@ -16,8 +16,15 @@ variable "source_dir" {
 }
 
 variable "hash_sources" {
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
+  description = "List of file patterns to create a source hash. (omitted if 'source_hash' is specified)"
+}
+
+variable "source_hash" {
+  type        = string
+  default     = null
+  description = "Hash of package source. This will determine possible changes to the package"
 }
 
 variable "package_type" {

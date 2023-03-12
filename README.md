@@ -25,22 +25,26 @@ Keep in mind that you need to have permissions to create a zip package in provid
 
 `hash_sources` - list of paths with hash sources patterns (See examples below)
 
+`source_hash` - hash value of source files
+
 `excluded_paths` - list of paths that should be excluded (As patterns, see examples below.)
 
 
 ### Outputs
 
-`key` - S3 object key.
+`s3_key` - S3 object key.
 
 `output_base64sha256` - zip archive hash. Can be used to detect changes in a source directory.
 
-`zip_id` - name of zip file. (Calculated hash of sources)
+`source_hash` - Calculated hash of sources
+
+`hash_files_paths` - List of files used as a hash source (valid only if `source_hash` was not provided in the input)
 
 
 ### Examples
 
 ```terraform
-module "ms-package" {
+module "package" {
   source = "github.com/Mich0232/aws-package.git"
 
   deployment_bucket_id     = aws_s3_bucket.deployment_bucket.id
