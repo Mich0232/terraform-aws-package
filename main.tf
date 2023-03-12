@@ -1,5 +1,5 @@
 locals {
-  hash                      = var.source_hash ? var.source_hash : random_uuid.hash[0].result
+  hash                      = var.source_hash != null ? var.source_hash : random_uuid.hash[0].result
   zip_filename              = var.package_type == "zip" ? "${local.hash}.zip" : "${local.hash}"
   excluded_hash_files_paths = distinct(flatten([for path in var.excluded_paths : fileset(var.source_dir, path)]))
   all_hash_files_paths      = distinct(flatten([for path in var.hash_sources : fileset(var.source_dir, path)]))
