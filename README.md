@@ -6,7 +6,7 @@ This module creates an S3 object based on local source provided in the configura
 
 ```terraform
 module "package" {
-  source = "github.com/Mich0232/aws-package.git"
+  source = "github.com/Mich0232/terraform-aws-package.git"
 
   deployment_bucket_id     = aws_s3_bucket.deployment_bucket.id
   deployment_bucket_prefix = "myApp"
