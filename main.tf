@@ -27,4 +27,6 @@ resource "aws_s3_object" "lambda_code_object" {
   source_hash = data.archive_file.package.output_base64sha256
 
   depends_on = [data.archive_file.package]
+
+  tags = var.tags
 }

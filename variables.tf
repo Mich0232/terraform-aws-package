@@ -41,3 +41,8 @@ variable "excluded_paths" {
   type    = list(string)
   default = []
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "User defined resource tags"
+}
